@@ -1,0 +1,160 @@
+body{
+  background-color: #e8e8e8;
+}
+.btn:hover{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(30,215,221,0.9794511554621849) 52%, rgba(0,166,255,1) 79%);
+}
+/* .container-fluid{
+  position: fixed;
+} */
+.border2{
+  border: 2px solid #6c9787;
+  height: 150px;
+  border-radius: 9px;
+}
+.border3{
+  border: 2px solid red;
+  height: 240px;
+  border-radius: 9px;
+}
+.hr{
+  width: 290%;
+}
+.boutonsreset{
+  background-color: #ffffff;
+  border-color: #ffc909;
+  color: #ffc909;
+  border: 2px solid #ffc909;
+  border-radius: 8px;
+  font-size: large;
+}
+.boutonsreset:hover{
+  background-color: #ffc909;
+  color: black;
+}
+.input1{
+  background-color: #ffffff;
+  border: 2px solid green;
+  width: 95%;
+  border-radius: 4px;
+}
+/* datalist{
+  background-color: white;
+} */
+.iconmoney{
+  font-size: 58px;
+  color: #056c89;
+}
+.iconcredit{
+  font-size: 58px;
+  color: #056c89;
+}
+.icondollar{
+  font-size: 58px;
+  color: #056c89;
+}
+.letrait{
+  width: 90%;
+}
+.icongear{
+  color: #0b6a85;
+}
+.F{
+  font-size: 25px;
+  color: red;
+}
+.f1{
+  font-size: 25px;
+  color: green;
+}
+.divdesparametre{
+  width: 390px;
+}
+thead tr{
+  display: flex;
+  /* gap: 40px; */
+  justify-content: space-evenly;
+  
+}
+tbody tr{
+  display: flex;
+  /* gap: 120px; */
+  justify-content: space-evenly;
+  border: 2px solid #6cd2ee;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.laChart{
+  width: 70%;
+  
+}
+
+
+@media (max-width:1024px) {
+  .divdesicon{
+      gap: 40px;
+  }
+  .iconBallance{
+      margin-right: 32px;
+
+  }
+}
+
+/* @media (max-width:320px) {
+ 
+} */
+.btnTrash{
+  border: none;
+  background-color: transparent;
+}
+.message{
+  width: 20%;
+  height: 100px;
+  border: 1px solid #69a7a9;
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+}
+/* .hidden{
+  display: none;
+}
+.notifications{
+  background-color: green;
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+} */   
+.btnedit{
+  background-color: transparent;
+  border: none;
+}
+ .feedback{
+  display: none;
+}
+.notication{
+  display: none;
+}
+.block{
+  display: block;
+} 
+
+.headerThetext{
+  background-color: #69a7a9;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+}
+.error {
+  color: #ff465a;
+}
+.hiden {
+  display: block;
+}
+.divbtnHistory{
+  display: none;
+}

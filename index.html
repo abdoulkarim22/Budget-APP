@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"  rel="stylesheet"  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"  crossorigin="anonymous">
+        <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"  integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="   crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Budget-app</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="d-flex gap-3 borde1">
+                        <div>
+                            <h1 class="mt-3">EXPENSE TRACKER</h1>
+                         </div>
+                    <div>
+                      <button type="button" id="btnReset"   class="btn btn-outline-warning p-2 mb-1 mt-4 ms-2">Reset value</button>
+                 </div>
+             </div>
+                    <!-- ==================================================================== -->
+
+                    <hr class="hrt mt-4">
+                     <div class="feedback alert alert-danger text-capitalize"><span id="budget-error" class="text-capitalize"></span></div>
+                    <div class="border2">
+                        <p class="text-black mb-1 ms-2 mt-2 fw-bold">Please  Enter Your Budget</p>
+                        <form action id="Number-form">
+                            <input type="number" name="" class="input1 ms-2 p-1"  id="input">
+                            <button type="submit"  class="btn btn-outline-success ms-2 mt-4 fw-bold"  id="Buttoncalcule">Calculate</button>
+                        </form>
+                    </div>
+                    <div class="notication alert alert-danger  mt-2"><span id="leMessage"></span></div>
+                    <div class="border3 mt-4">
+                        <p class="text-black mb-1 ms-2 mt-2 fw-bold">Please Enter Your Expense</p>
+                        <form action id="Expenseform">
+                            <input class="input1 ms-2 p-1" list="datalistOptions"   id="PleaseEnterYourExpense">
+                            <datalist id="datalistOptions">
+                                <option value="Banana"></option>
+                                <option value="Lait"></option>
+                                <option value="Sucre"></option>
+                            </datalist>
+                            <p class="text-black mb-1 ms-2 mt-2 fw-bold">Please Enter Your Expense Amount</p>
+                            <input type="number" name class="input1 ms-2 p-1"  id="PleaseEnterYourExpenseAmount">
+                            <button onclick="lesDonnesdutable()" id="submit"  class="btn btn-outline-danger ms-2 mt-4 fw-bold">Add expense</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ==================================================================== -->
+
+                <div class=" col-12  col-lg-5  col-md-6">
+                    <div class="borde4">
+                        <div class=" mt-4 ms-4 mb-5">
+                            <div class=" d-flex justify-content-evenly divdesicon">
+                                <div class="w-25">
+                                    <p class="fw-bold">BUDGET</p>
+                                    <div>
+                                        <span class><i class="fa-regular fa-money-bill-1 iconmoney"></i></span>
+                                    </div>
+                                    <div>
+                                        <span  class="text-center ms-2 me-2 fs-3 text-success"   id="budgetValue">0</span>
+                                        <span class="f1">F</span></div>
+                                </div>
+                                <div class="w-25">
+                                    <p class="fw-bold">EXPENSES</p>
+                                     <div> 
+                                        <span><i  class="fa-solid fa-credit-card iconcredit"></i></span>
+                                    </div>
+                                        <span class="text-center ms-2 fs-3 text-danger me-2" id="Budgetexpenses">0 </span>
+                                        <span class="F">F</span>
+                                </div>
+                                <!-- <p id="notification"></p> -->
+                                <div class="me-5">
+                                    <p class="fw-bold">BALANCE</p>
+                                <div class="text-center">
+                                     <span><i class="fa-solid fa-dollar-sign icondollar iconBallance"></i></span>
+                                 </div>
+                                    <div class="text-center">
+                                        <span  class="text-center ms-2 fs-3 text-success me-2"  id="balanceValue">0 </span><span class="f1">F</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <p class=" ms-2 letrait"></p>
+                        <div class="Divtable ms-0">
+                            <table class="container d-flex flex-column">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p class="fw-bold">Expense Title</p>
+                                    </th>
+                                    <th>
+                                        <p class="fw-bold">Expense Value</p>
+                                    </th>
+                                    <th>
+                                        <span><i class="fa-solid fa-gear fs-3 icongear"></i></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                
+                            </tbody>
+                        </table>
+                    </div>                               
+                    </div>  
+                </div>
+                
+             <div class="col-lg-4">
+                      <!-- ======= ================= error pour le premier input ============================================= -->
+                      <div class="message mt-2 bg-light" id="verifications">
+                        <p class="headerThetext p-1">Ajout de Budget</p>
+                        <span class=" text-black fs-5">Votre budget a été ajouté avec success</span>
+                       </div> 
+                  <div class="headerThetext"></div> 
+                      <!-- */ ======================  == error pour le premier input ============================================= /* --> 
+                                 
+                 
+                    <div class=" mt-4 w-100 justify-content-center d-none">
+                          <button type="button" class="btn btn-outline-secondary w-100 " id="historyButton">History</button>
+                          <tbody id="historyTbody">
+                          
+                          </tbody>
+                      </div>
+                      <div class="laChart">
+                           <canvas id="myChart d-none"></canvas>
+                      </div>  
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="app.js" defer></script>
+    </body>
+</html>
