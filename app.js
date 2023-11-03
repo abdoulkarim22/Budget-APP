@@ -20,7 +20,8 @@ const historyBtn = document.getElementById("historyButton");
 const divHistoyry = document.getElementById("divHistory");
 const verifications = document.getElementById("verifications");
 const tbodyClass = document.querySelector(".tbodyClass");
-const btnClose = document.getElementById("btnClose")
+const btnClose = document.getElementById("btnClose");
+const divTableandBtn = document.querySelector(".divTableandBtn");
 let tempAmount = 0;
 
 
@@ -130,23 +131,29 @@ btnSubmit.addEventListener('click', (event) => {
       localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`
       Valuebalance.innerText = `${budget - getItemlocalstorage.prix}` 
     }
-    divHistoyry.classList.remove("divbtnHistory");
-    tbodyClass.classList.add("feedback");
-    btnClose.classList.add("feedback")
+ 
+     
+      
+  
+    
+    
+    history();
+    lesDonnesdutable(); 
+  }
 
+});
+    btnClose.classList.add("feedback")
     historyBtn.addEventListener('click',function (event) {
+     if (event) {
+      divTableandBtn.classList.remove("divTableandBtn")
       tbodyClass.classList.remove("feedback");
-      btnClose.classList.remove("feedback")
+      btnClose.classList.remove("feedback");
+     }
     });
     btnClose.addEventListener('click',function (event) {
       tbodyClass.classList.add("feedback");
       btnClose.classList.add("feedback");
     });
-    history();
-    lesDonnesdutable(); 
-  }
-
-})
 
 function history(event) {
   event?.preventDefault();
@@ -215,26 +222,26 @@ btnReset.addEventListener('click',function (event) {
 
 // ============================================= la chartjs ====================================================
 
-  // document.addEventListener('DOMContentLoaded',function () {
-  //   const ctx = document.getElementById('myChart');
+   document.addEventListener('DOMContentLoaded',function () {
+     const ctx = document.getElementById('myChart');
     
-  // new Chart(ctx, {
-  //   type: 'doughnut',
-  //   data: {
-  //     labels: [],
-  //     datasets: [{
+   new Chart(ctx, {
+     type: 'doughnut',
+     data: {
+       labels: ['Lait','Sucre','Banana'],
+       datasets: [{
         
-  //       data: ['12','5'],
-  //       borderWidth: 1
-  //     }]
-  //   },
-  //   options: {
-  //     scales: {
-  //       y: {
-  //         display: false,
-  //         beginAtZero: true
-  //       }
-  //     }
-  //   }
-  // });
-  // })
+        data: ['12','5','7'],
+        borderWidth: 1
+      }]
+    },
+  options: {
+    scales: {
+      y: {
+        display: false,
+        beginAtZero: true
+       }
+     }
+   }
+ });
+ })

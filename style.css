@@ -140,7 +140,10 @@ tbody tr{
 }
 .block{
   display: block;
-} 
+}
+.divTableandBtn{
+  display: none;
+}
 
 .headerThetext{
   background-color: #69a7a9;
@@ -154,9 +157,6 @@ tbody tr{
 }
 .hiden {
   display: block;
-}
-.divbtnHistory{
-  display: none;
 }
 .Expense{
   font-weight: 600;
@@ -172,6 +172,7 @@ tbody tr{
   display: flex;
   position: relative;
   top: 10em;
+  margin-bottom: 25%;
 }
 .btnClose{
   width: 140px;
