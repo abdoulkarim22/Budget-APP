@@ -158,3 +158,31 @@ tbody tr{
 .divbtnHistory{
   display: none;
 }
+.Expense{
+  font-weight: 600;
+}
+.Expense1{
+  width: 20%;
+}
+.classTR{
+  border: none;
+}
+.divClose{
+  justify-content: center;
+  display: flex;
+  position: relative;
+  top: 10em;
+}
+.btnClose{
+  width: 140px;
+  border: none;
+  background-color: orangered;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.btnClose:hover{
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(30,215,221,0.9794511554621849) 52%, rgba(0,166,255,1) 79%);
+}

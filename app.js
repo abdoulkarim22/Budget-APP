@@ -17,8 +17,10 @@ const laNotications = document.querySelector(".notication");
 const leMessage = document.getElementById("leMessage");
 const historyTbaby = document.getElementById("historyTbody");
 const historyBtn = document.getElementById("historyButton");
- 
+const divHistoyry = document.getElementById("divHistory");
 const verifications = document.getElementById("verifications");
+const tbodyClass = document.querySelector(".tbodyClass");
+const btnClose = document.getElementById("btnClose")
 let tempAmount = 0;
 
 
@@ -92,7 +94,7 @@ btnCalculete.addEventListener('click', (e) => {
  document.onload = budgetForm()
 
 // ================================= sumbmit btn =======================================================
-btnSubmit.addEventListener('click', (event) =>{
+btnSubmit.addEventListener('click', (event) => {
     event.preventDefault()
     //  document.location.reload(); 
     if (!inputexpensesamount.value || !inputpleaseyourexpense.value || inputexpensesamount.value < 0) {
@@ -109,13 +111,12 @@ btnSubmit.addEventListener('click', (event) =>{
     verifications.classList.add("block");
     setTimeout(() => {
       verifications.classList.remove('block');
-    }, 2000);
+    }, 1000);
    // ================= le stokage dans localstorage des value name et prix =============================
    const datas = {
     name:inputpleaseyourexpense.value,
     prix:inputexpensesamount.value
   };
-  
 
   tableExpenses.push(datas);
   localStorage.setItem("tableExpenses",JSON.stringify(tableExpenses));
@@ -129,10 +130,36 @@ btnSubmit.addEventListener('click', (event) =>{
       localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`
       Valuebalance.innerText = `${budget - getItemlocalstorage.prix}` 
     }
+    divHistoyry.classList.remove("divbtnHistory");
+    tbodyClass.classList.add("feedback");
+    btnClose.classList.add("feedback")
+
+    historyBtn.addEventListener('click',function (event) {
+      tbodyClass.classList.remove("feedback");
+      btnClose.classList.remove("feedback")
+    });
+    btnClose.addEventListener('click',function (event) {
+      tbodyClass.classList.add("feedback");
+      btnClose.classList.add("feedback");
+    });
+    history();
+    lesDonnesdutable(); 
   }
-  lesDonnesdutable(); 
 
 })
+
+function history(event) {
+  event?.preventDefault();
+  tableExpenses.forEach(element => {
+    historyTbaby.innerHTML += `
+          <tr>
+              <td class="text-center" style="width: 300px">${element.name}</td>
+              <td class="text-end w-50">${element.prix}<span class = "ms-1">${"F"}</span></td>
+          </tr>
+          `
+   });
+}
+history();
 // ================================= sumbmit btn =======================================================
 
 // ================================== function pour afficher les name et prix================================================================
@@ -142,9 +169,9 @@ function lesDonnesdutable(event){
   tableExpenses.forEach(element => {
    tBody.innerHTML += `
          <tr>
-             <td style="width: 200px">${element.name}</td>
-             <td>${element.prix}<span class = "ms-1">${"F"}</span></td>
-             <td><span class = "me-3"><button class="btnedit" id="btnedit" ><i class="fa-sharp fa-solid fa-pen-to-square" style="color:  #45c8dc"></i></button></span> <span><button class = "btnTrash" id="clear" ><i  class="fa-solid fa-trash"  style="color: red;cursor: pointer;"></i></button></span></td>
+             <td class="product" style="width: 200px">${element.name}</td>
+             <td class="amount">${element.prix}<span class = "ms-1">${"F"}</span></td>
+             <td><span class = "me-3"><button class="btnedit" id="btnedit" ><i class="fa-sharp fa-solid fa-pen-to-square" id="editeBtn" style="color:  #45c8dc"></i></button></span> <span><button class = "btnTrash" id="clear" ><i  class="fa-solid fa-trash"  style="color: red;cursor: pointer;"></i></button></span></td>
          </tr>
          `
   });
@@ -163,7 +190,7 @@ if (getItemlocalstorage != null) {
 }
 
 
-// ===========================onclick prix expenses =======================
+//onclick prix expenses 
 submit.onclick = (e) =>{
   const user = {
     prix:inputexpensesamount.value
@@ -171,37 +198,15 @@ submit.onclick = (e) =>{
   localStorage.setItem("user",JSON.stringify(user))
   //  document.location.reload();
 }
-// ===========================onclick prix expenses =======================
+// onclick prix expenses
 
-// ==================== addEventListener.btnRese====================
+// addEventListener.btnRese
 btnReset.addEventListener('click',function (event) {
   if (event) {
     localStorage.clear();
     document.location.reload();
   }
 });
-
-//Function  Edit and Delete Button
-const disableButtons = (bool) =>{
-  let editBtn = document.getElementById("")
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -210,26 +215,26 @@ const disableButtons = (bool) =>{
 
 // ============================================= la chartjs ====================================================
 
-  document.addEventListener('DOMContentLoaded',function () {
-    const ctx = document.getElementById('myChart');
+  // document.addEventListener('DOMContentLoaded',function () {
+  //   const ctx = document.getElementById('myChart');
     
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['codeloccol','FAB LAB'],
-      datasets: [{
+  // new Chart(ctx, {
+  //   type: 'doughnut',
+  //   data: {
+  //     labels: [],
+  //     datasets: [{
         
-        data: ['12','5'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          display: false,
-          beginAtZero: true
-        }
-      }
-    }
-  });
-  })
+  //       data: ['12','5'],
+  //       borderWidth: 1
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         display: false,
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // });
+  // })
