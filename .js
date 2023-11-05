@@ -36,3 +36,20 @@
 // inputpleaseyourexpense.value = "";
 // inputexpensesamount.value = "";
 //  lesDonnesdutable();
+// if (getItemlocalstorage != null) {
+//   localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`
+//   Valuebalance.innerText = `${budget - getItemlocalstorage.prix}` 
+// }
+
+
+//onclick prix expenses 
+// submit.onclick = (e) =>{
+//   const user = {
+//     prix:inputexpensesamount.value
+//   }
+//   localStorage.setItem("user",JSON.stringify(user))
+//   //  document.location.reload();
+// }
+// onclick prix expenses
+
+// addEventListener.btnRese

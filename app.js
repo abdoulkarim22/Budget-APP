@@ -23,7 +23,7 @@ const tbodyClass = document.querySelector(".tbodyClass");
 const btnClose = document.getElementById("btnClose");
 const divTableandBtn = document.querySelector(".divTableandBtn");
 let tempAmount = 0;
-
+let total = 0;
 
 // ================================ pour les input ======================================
 const input = document.getElementById("input");
@@ -47,11 +47,21 @@ const btnReset = document.getElementById("btnReset");
  tableExpenses = JSON.parse(localStorage.getItem("tableExpenses"))
 
  let budget = 0;
+ let expense = 0;
+ let balance = 0;
+
  if (!localStorage.getItem("budget")) {
   budget =  localStorage.setItem("budget",JSON.stringify(budget))
  }
+ if (!localStorage.getItem("balance")) {
+  balance =  localStorage.setItem("balance",JSON.stringify(balance))
+ }
+ if (!localStorage.getItem("expense")) {
+  expense =  localStorage.setItem("expense",JSON.stringify(expense))
+ }
  budget = JSON.parse(localStorage.getItem("budget"))
-
+ balance = JSON.parse(localStorage.getItem("balance"));
+ expense = JSON.parse(localStorage.getItem("expense"))
 
 
 
@@ -79,18 +89,26 @@ btnCalculete.addEventListener('click', (e) => {
           }, 2000);
         e.preventDefault();
         budget += parseInt(input.value)
-        localStorage.setItem("budget",JSON.stringify(budget))
-        //  document.location.reload();
-        input.value = ""  
+        localStorage.setItem("budget",JSON.stringify(budget));
+
+        balance = parseInt(budget) - parseInt(expense);
+        localStorage.setItem("balance",JSON.stringify(balance));
+        
+        input.value = "";
+        budgetForm();
       }
-      budgetForm();
+        // document.location.reload();
+
+      
 });
 // +++++++++++++++++++ addEventListener button calculete ++++++++++++++++++++++++++
 
 
  function budgetForm() {
-   Valuebalance.innerText = budget;
+  balance = parseInt(budget) - parseInt(expense);
+  localStorage.setItem("balance",JSON.stringify(balance))
    Valuebudget.innerText = budget;
+   Valuebalance.innerText =  balance ;
  }
  document.onload = budgetForm()
 
@@ -98,6 +116,7 @@ btnCalculete.addEventListener('click', (e) => {
 btnSubmit.addEventListener('click', (event) => {
     event.preventDefault()
     //  document.location.reload(); 
+
     if (!inputexpensesamount.value || !inputpleaseyourexpense.value || inputexpensesamount.value < 0) {
       laNotications.classList.add("block");
       leMessage.innerHTML = `Svp veuillez mettre une  valeur`;
@@ -121,26 +140,31 @@ btnSubmit.addEventListener('click', (event) => {
 
   tableExpenses.push(datas);
   localStorage.setItem("tableExpenses",JSON.stringify(tableExpenses));
+ 
+  
+  // expense += parseInt(inputexpensesamount.value);
+  // console.log(expense + " before ");
+  // localStorage.setItem("expense",JSON.stringify(expense));
   inputpleaseyourexpense.value = "";
   inputexpensesamount.value = "";
-  
     // ================= le stokage dans localstorage des value name et prix =============================
-    const localBudgetexpenses = document.getElementById("Budgetexpenses");
-    const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
-    if (getItemlocalstorage != null) {
-      localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`
-      Valuebalance.innerText = `${budget - getItemlocalstorage.prix}` 
-    }
- 
-     
-      
-  
-    
-    
-    history();
-    lesDonnesdutable(); 
-  }
+    // const localBudgetexpenses = document.getElementById("Budgetexpenses");
+    // const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
+    // if (getItemlocalstorage != null) {
+    //     let expenditure = parseInt(`${getItemlocalstorage.prix}`);
+    //     //Total expense (existing + new);
+    //     let sum = parseInt(budgetexpenses.innerText) + expenditure;
+    //     budgetexpenses.innerText = sum;
+    //    }
 
+
+       //  localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`;
+      //  Valuebalance.innerText = `${budget - getItemlocalstorage.prix}`;
+      budgetForm();
+     }
+    
+    lesDonnesdutable();
+    history();
 });
     btnClose.classList.add("feedback")
     historyBtn.addEventListener('click',function (event) {
@@ -171,9 +195,11 @@ history();
 
 // ================================== function pour afficher les name et prix================================================================
 function lesDonnesdutable(event){
-  event?.preventDefault()
+  total = 0;
+   event?.preventDefault()
   tBody.innerHTML = "";
   tableExpenses.forEach(element => {
+   total += parseInt(element.prix)
    tBody.innerHTML += `
          <tr>
              <td class="product" style="width: 200px">${element.name}</td>
@@ -182,6 +208,12 @@ function lesDonnesdutable(event){
          </tr>
          `
   });
+  // budgetexpenses.innerHTML = total;
+
+  budgetexpenses.innerText = total;
+  expense = total
+  localStorage.setItem("expense",JSON.stringify(expense));
+  console.log(total);
 }
 lesDonnesdutable();
 // ==================================  pour afficher les name et prix================================================================
@@ -191,23 +223,7 @@ lesDonnesdutable();
   const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
 const localBudgetexpenses = document.getElementById("Budgetexpenses");
 
-if (getItemlocalstorage != null) {
-  localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`
-  Valuebalance.innerText = `${budget - getItemlocalstorage.prix}` 
-}
 
-
-//onclick prix expenses 
-submit.onclick = (e) =>{
-  const user = {
-    prix:inputexpensesamount.value
-  }
-  localStorage.setItem("user",JSON.stringify(user))
-  //  document.location.reload();
-}
-// onclick prix expenses
-
-// addEventListener.btnRese
 btnReset.addEventListener('click',function (event) {
   if (event) {
     localStorage.clear();
