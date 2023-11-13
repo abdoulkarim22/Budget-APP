@@ -53,3 +53,15 @@
 // onclick prix expenses
 
 // addEventListener.btnRese
+    // const localBudgetexpenses = document.getElementById("Budgetexpenses");
+    // const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
+    // if (getItemlocalstorage != null) {
+    //     let expenditure = parseInt(`${getItemlocalstorage.prix}`);
+    //     //Total expense (existing + new);
+    //     let sum = parseInt(budgetexpenses.innerText) + expenditure;
+    //     budgetexpenses.innerText = sum;
+    //    }
+
+
+       //  localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`;
+      //  Valuebalance.innerText = `${budget - getItemlocalstorage.prix}`;

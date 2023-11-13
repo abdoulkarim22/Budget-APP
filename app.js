@@ -22,6 +22,9 @@ const verifications = document.getElementById("verifications");
 const tbodyClass = document.querySelector(".tbodyClass");
 const btnClose = document.getElementById("btnClose");
 const divTableandBtn = document.querySelector(".divTableandBtn");
+const btnModifier = document.getElementById("btnModifier");
+const message1 = document.querySelector(".message1");
+const verifications1 = document.getElementById("verifications1")
 let tempAmount = 0;
 let total = 0;
 
@@ -148,18 +151,7 @@ btnSubmit.addEventListener('click', (event) => {
   inputpleaseyourexpense.value = "";
   inputexpensesamount.value = "";
     // ================= le stokage dans localstorage des value name et prix =============================
-    // const localBudgetexpenses = document.getElementById("Budgetexpenses");
-    // const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
-    // if (getItemlocalstorage != null) {
-    //     let expenditure = parseInt(`${getItemlocalstorage.prix}`);
-    //     //Total expense (existing + new);
-    //     let sum = parseInt(budgetexpenses.innerText) + expenditure;
-    //     budgetexpenses.innerText = sum;
-    //    }
 
-
-       //  localBudgetexpenses.innerText = `${getItemlocalstorage.prix}`;
-      //  Valuebalance.innerText = `${budget - getItemlocalstorage.prix}`;
       budgetForm();
      }
     
@@ -181,14 +173,16 @@ btnSubmit.addEventListener('click', (event) => {
 
 function history(event) {
   event?.preventDefault();
-  tableExpenses.forEach(element => {
-    historyTbaby.innerHTML += `
+  tableExpenses.forEach((element,index) => {
+    historyTbaby.innerHTML +=`
           <tr>
+          <td class="text-center">${index+1}</td>
               <td class="text-center" style="width: 300px">${element.name}</td>
               <td class="text-end w-50">${element.prix}<span class = "ms-1">${"F"}</span></td>
           </tr>
           `
    });
+   localStorage.setItem("tableExpenses",JSON.stringify(tableExpenses));
 }
 history();
 // ================================= sumbmit btn =======================================================
@@ -198,29 +192,67 @@ function lesDonnesdutable(event){
   total = 0;
    event?.preventDefault()
   tBody.innerHTML = "";
-  tableExpenses.forEach(element => {
+  tableExpenses.forEach((element,index) => {
    total += parseInt(element.prix)
    tBody.innerHTML += `
          <tr>
              <td class="product" style="width: 200px">${element.name}</td>
              <td class="amount">${element.prix}<span class = "ms-1">${"F"}</span></td>
-             <td><span class = "me-3"><button class="btnedit" id="btnedit" ><i class="fa-sharp fa-solid fa-pen-to-square" id="editeBtn" style="color:  #45c8dc"></i></button></span> <span><button class = "btnTrash" id="clear" ><i  class="fa-solid fa-trash"  style="color: red;cursor: pointer;"></i></button></span></td>
+             <td><span class = "me-3"><i onclick="penEdit(${index})"; class="fa-sharp fa-solid fa-pen-to-square" id="editeBtn" style="color:  #45c8dc"></i></span> <span><i onclick="trash(${index})" class="fa-solid fa-trash"  style="color: red;cursor: pointer;"></i></span></td>
          </tr>
          `
   });
   // budgetexpenses.innerHTML = total;
-
   budgetexpenses.innerText = total;
   expense = total
   localStorage.setItem("expense",JSON.stringify(expense));
   console.log(total);
 }
 lesDonnesdutable();
+
+// =================================== function pour suprimmer =======================================
+function trash(index) {
+  tableExpenses.splice(index,1);
+  localStorage.setItem("tableExpenses",JSON.stringify(tableExpenses));
+  lesDonnesdutable();
+}
+// =================================== function pour suprimmer =======================================
+
+// =================================== function pour modifier =======================================
+function penEdit(index) {
+  btnSubmit.classList.add("d-none");
+  btnModifier.classList.remove("d-none");
+  inputpleaseyourexpense.value= tableExpenses[index].name;
+  inputexpensesamount.value = tableExpenses[index].prix;
+
+   btnModifier.addEventListener('click', function (event){
+    btnModifier.classList.add("d-none");
+    btnSubmit.classList.remove("d-none");
+    event?.preventDefault();
+    if (inputpleaseyourexpense.value === "" || inputexpensesamount.value === "") {
+      alert("error");
+    }else{
+      tableExpenses[index].name = inputpleaseyourexpense.value;
+      tableExpenses[index].prix = inputexpensesamount.value;
+      localStorage.setItem("tableExpenses",JSON.stringify(tableExpenses));
+
+      message1.classList.remove("message1");
+      setTimeout(() =>{
+        message1.classList.add("message1");
+      },2000);
+      inputpleaseyourexpense.value = "";
+      inputexpensesamount.value = "";
+    }
+
+     });
+}
+// =================================== function pour modifier =======================================
+
 // ==================================  pour afficher les name et prix================================================================
 
 
 
-  const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
+const getItemlocalstorage = JSON.parse(localStorage.getItem("user"));
 const localBudgetexpenses = document.getElementById("Budgetexpenses");
 
 

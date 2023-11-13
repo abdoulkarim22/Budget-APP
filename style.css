@@ -187,3 +187,18 @@ tbody tr{
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(30,215,221,0.9794511554621849) 52%, rgba(0,166,255,1) 79%);
 }
+
+.d-none{
+  display: none;
+}
+.message1{
+  display: none;
+}
+#verifications1{
+  width: 20%;
+  height: 100px;
+  border: 1px solid #69a7a9;
+  border-radius: 5px;
+  position: absolute;
+  text-align: center;
+}
